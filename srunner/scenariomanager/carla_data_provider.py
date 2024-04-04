@@ -63,7 +63,9 @@ class CarlaDataProvider(object):  # pylint: disable=too-many-public-methods
     _blueprint_library = None
     _all_actors = None
     _ego_vehicle_route = None
-    _traffic_manager_port = 8000
+    _rpc_port = None
+    _streaming_port = None
+    _traffic_manager_port = None
     _random_seed = 2000
     _rng = random.RandomState(_random_seed)
     _grp = None
@@ -186,6 +188,34 @@ class CarlaDataProvider(object):  # pylint: disable=too-many-public-methods
         # This may cause exception loops in py_trees
         print('{}.get_transform: {} not found!' .format(__name__, actor))
         return None
+
+    @staticmethod
+    def set_rpc_port(port):
+        """
+        Set the CARLA rpc port
+        """
+        CarlaDataProvider._rpc_port = port
+
+    @staticmethod
+    def get_rpc_port():
+        """
+        Get the CARLA rpc port
+        """
+        return CarlaDataProvider._rpc_port
+    @staticmethod
+
+    def set_streaming_port(port):
+        """
+        Set the CARLA streaming port for sensor data
+        """
+        CarlaDataProvider._streaming_port = port
+
+    @staticmethod
+    def get_streaming_port():
+        """
+        Get the CARLA streaming port for sensor data
+        """
+        return CarlaDataProvider._streaming_port
 
     @staticmethod
     def set_client(client):
