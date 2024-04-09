@@ -65,6 +65,7 @@ class CarlaDataProvider(object):  # pylint: disable=too-many-public-methods
     _ego_vehicle_route = None
     _rpc_port = None
     _streaming_port = None
+    _secondary_port = None
     _traffic_manager_port = None
     _random_seed = 2000
     _rng = random.RandomState(_random_seed)
@@ -202,8 +203,8 @@ class CarlaDataProvider(object):  # pylint: disable=too-many-public-methods
         Get the CARLA rpc port
         """
         return CarlaDataProvider._rpc_port
-    @staticmethod
 
+    @staticmethod
     def set_streaming_port(port):
         """
         Set the CARLA streaming port for sensor data
@@ -216,6 +217,20 @@ class CarlaDataProvider(object):  # pylint: disable=too-many-public-methods
         Get the CARLA streaming port for sensor data
         """
         return CarlaDataProvider._streaming_port
+
+    @staticmethod
+    def set_secondary_port(port):
+        """
+        Set the CARLA port for the secondary servers
+        """
+        CarlaDataProvider._secondary_port = port
+
+    @staticmethod
+    def get_secondary_port():
+        """
+        Get the CARLA port for the secondary servers
+        """
+        return CarlaDataProvider._secondary_port
 
     @staticmethod
     def set_client(client):
